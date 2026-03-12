@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PDM2 - W5P2 - 1 Star Exercise</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./lib/main-styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="./lib/libraries/p5.min.js"></script>
+    <script src="./lib/libraries/p5.sound.min.js"></script>
+  </head>
+
+  <body>
+    <h1>1 Star Exercise</h1>
+    <p>Your sketch:</p>
+    <div class="guidance">
+        <h2>Instructions</h2>
+        <div>
+            <p>In this exercise, you will create a flexible custom checkbox control that you 
+                can use for many different purposes. Note: p5.js already provides <a href="https://p5js.org/reference/#/p5/createCheckbox" target="_blank">a checkbox control</a> 
+                so you should generally use that if you need a checkbox unless you want to add 
+                styling.
+            </p>
+            <h3>Implement the checkbox</h3>
+            <p>The following steps take you through the checkbox implementation.
+            </p>
+            <ol>
+                <li>Create a new file called checkbox.js and connect it to this HTML file by adding the code below immediately 
+                    after the <code>&lt;script&gt;</code> tag that links sketch.js:
+                    <pre>&lt;script src="checkbox.js"&gt;&lt;/script&gt;</pre>
+                </li>
+                <li>
+                    For this implementation, you will use bounding box collision detection to detect when the user is 
+                    interacting with the checkbox. Open up the <a href="https://github.com/UoY-IM-PDM2-2425/PDM2-example-code/tree/main/Lectures/W5L2%20custom%20GUI%20controls/customButton" target="_blank">example from lecture</a> and
+                    copy the <code>CollisionRect</code> class into checkbox.js.
+                </li>
+                <li>Still in checkbox.js, create a new class called <code>Checkbox</code>, which is a 
+                    child of <code>CollisionRect</code>. The class should have two private attributes, 
+                    <code>#label</code> and <code>#checked</code>. The constructor should have parameters 
+                    for the checkbox location and size, as well as a parameter for the label text, which should 
+                be used to set the initial value of the <code>#label</code> attribute. <code>#checked</code> should 
+            be false to begin with. Use the remaining constructor arguments and the appropriate parent class methods to set the location and dimensions of 
+        the collision rect. Try to implement this step on your own first, but you can <a href="https://gist.github.com/ace01603/e14970d9a2f15906edeb00d11cd9f391" target="_blank">click here to see a completed example</a>.</li>
+                <li>There are two ways to think about state for a checkbox: it's value (ticked or not), and it's 
+                    interaction status. The <code>#checked</code> attribute will track whether or 
+                    not the checkbox is ticked. Add a <code>#state</code> attribute and public static instance variables to represent its interaction status: disabled, enabled, and hover. It's 
+                    starting state should be enabled.
+                </li>
+                <li>
+                    Add a <code>draw()</code> method that draws the checkbox (don't forget the label!). The checkbox should look 
+                    different depending on its state and whether or not it is ticked. For example, you might change the colour scheme for each of the three states. The example below shows 
+                    fairly standard looking checkboxes. Feel free to make yours more exiting! If you would like to use the standard tick (✓), 
+                    copy and paste it from this text.
+                </li>
+                <li>Add a method called <code>isChecked()</code> that returns the <code>#checked</code> attribute.</li>
+                <li>Add method(s) that set the state of the checkbox when it is hovered, disabled, or enabled. Use the <a href="https://github.com/UoY-IM-PDM2-2324/PDM2-example-code/tree/main/Lectures/W5L2%20custom%20GUI%20controls/customButton" target="_blank">custom button</a> example 
+                as a guide.</li>
+                <li>Finally, add a method that will toggle the value of <code>#checked</code>.</li>
+            </ol>
+            <h3>Use your checkbox</h3>
+            <p>In sketch.js, write a sketch that uses at least two instances of the checkbox in different ways. For example, in 
+                the video below, the checkboxes show / remove stroke and fill on the shapes.
+            </p>
+            <p>Expected output:</p>
+            <p>
+                <video width="300" height="300" controls>
+                    <source src="./assets/1star.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </p>
+        </div>
+        <!-- <div>
+            <button class="btn btn-primary hint" type="button" data-bs-toggle="collapse" data-bs-target="#hint" aria-expanded="false" aria-controls="hint">
+                Hint
+            </button>
+            <div class="collapse" id="hint">
+                <div class="card card-body">
+                    <p>Include tips that might help students get unstuck.</p>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <script src="sketch.js"></script>
+  </body>
+</html>

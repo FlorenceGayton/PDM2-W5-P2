@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PDM2 - W5P2 - 2 Star Exercise</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./lib/main-styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="./lib/libraries/p5.min.js"></script>
+    <script src="./lib/libraries/p5.sound.min.js"></script>
+  </head>
+
+  <body>
+    <h1>2 Star Exercise</h1>
+    <p>Your sketch:</p>
+    <div class="guidance">
+        <h2>Instructions</h2>
+        <div>
+            <p>The goal of this exercise is to practice creating controls with animated transitions between 
+                states. You will create a toggle switch as shown in the video below. p5.js does not provide 
+                a built in toggle.
+            </p>
+            <ol>
+                <li>Create a new file called toggle.js and connect it to the HTML as usual.</li>
+                <li>Copy the <code>CollisionRect</code> class from your solution to the previous exercise into 
+                toggle.js and create a new <code>Toggle</code> class that inherits from <code>CollisionRect</code>.</li>
+                <li>A toggle switch has two states from a user's point of view, on or off. To create the animated transition, 
+                    your toggle will need four states: off, turning on, on, turning off. Add these to the class and set the 
+                    inital state to off.
+                </li>
+                <li>Write a method to draw the control. Keep it simple for now: draw a rectangle for the background and a smaller shape for 
+                    the switch. The switch should be on one side of the rectangle when the toggle is off and on the other side when 
+                    the toggle is on. Add private instance variables to store the position of the switch—you will need these to 
+                    create the animation later on.
+                </li>
+                <li>Add a method to flip the state of the switch when it is clicked. Don't worry about the animated states just yet. If 
+                    the toggle is off when it is clicked, set the state to on, and vice versa. If you haven't done so already, 
+                    create an instance of <code>Toggle</code> in the main sketch and write some code to test what you've implemented 
+                    so far. 
+                </li>
+                <li>Now you're ready to add the animated transitions. Add a private instance variable to store the switch 
+                    speed. Speed should be zero when the toggle state is on or off. When the toggle enters an animated state (turning on 
+                    or turning off), calculate the speed that the toggle should move:
+                    <ul>
+                        <li>speed = distance / time</li>
+                        <li>distance = the toggle's final position - the toggle's start position. For example, if turning on: distance = 
+                            toggle on position - toggle off position.
+                        </li>
+                        <li>time = the number of frames you want the transition to last. 30 is a good starting point but you can tweak it until 
+                            it looks right.
+                        </li>
+                    </ul>
+                </li>
+                <li>Update the method you wrote in step 5 so that the state changes on click as follows:
+                    <ul>
+                        <li>If the toggle is off when clicked, set the state to turning on. Calculate the toggle speed.</li>
+                        <li>If the toggle is on when clicked, set the state to turning off. Calculate the toggle speed.</li>
+                        <li>If the toggle is turning on or off when clicked, do nothing.</li>
+                    </ul>
+                </li>
+                <li>Write another method that moves the toggle swtich depending on state and the value of the speed attribute. If the 
+                    toggle is in an animated state, the method should also check if the switch has reached its destination and update 
+                    the state accordingly.
+                </li>
+                <li>Finally, add a method that allows users of the class to check if it is on or off. You will need to decide how 
+                    to handle the animated states.
+                </li>
+            </ol>
+            <p>Add some more code to sketch.js to test the toggle e.g. move / stop a shape based on the state of the toggle. You 
+                may like to add some additional styling.
+            </p>
+            <p>Expected output:</p>
+            <p>
+                <video width="300" height="300" controls>
+                    <source src="./assets/2star.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </p>
+        </div>
+        <!-- <div>
+            <button class="btn btn-primary hint" type="button" data-bs-toggle="collapse" data-bs-target="#hint" aria-expanded="false" aria-controls="hint">
+                Hint
+            </button>
+            <div class="collapse" id="hint">
+                <div class="card card-body">
+                    <p>Include tips that might help students get unstuck.</p>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <script src="sketch.js"></script>
+  </body>
+</html>

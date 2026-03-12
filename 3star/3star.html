@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PDM2 - W5P2 - 3 Star Exercise</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./lib/main-styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="./lib/libraries/p5.min.js"></script>
+    <script src="./lib/libraries/p5.sound.min.js"></script>
+  </head>
+
+  <body>
+    <h1>2 Star Exercise</h1>
+    <p>Your sketch:</p>
+    <div class="guidance">
+        <h2>Instructions</h2>
+        <div>
+            <p>Virtual joysticks are commonly used to control characters in mobile games. Despite 
+                being fairly common, the virtual joystick is a non-standard control that developers 
+                often have to implement themselves.
+            </p>
+            <p>Your task is to create a virtual joystick similar to the one in the video below. It should 
+                be possible to use the joystick to control the movement of a character.
+            </p>
+            <p>Here are some tips and high level guidance for creating the control:</p>
+            <ul>
+                <li>A virtual joystick consists of two components: a base (the larger circle), which does 
+                    not move, and a handle (the smaller circle), which the user can drag around the base.
+                </li>
+                <li>The handle needs collision detection to determine if the mouse is held down over the handle. A collision <em>circle</em> is recommended. You 
+                can find an example in the <a href="https://github.com/UoY-IM-PDM2-2425/PDM2-example-code/blob/main/Lectures/W5L2%20custom%20GUI%20controls/pieMenu/menu.js" target="_blank">pie menu</a> code 
+            shown in class.</li>
+                <li>The joystick should have two states: dragging and not dragging. When the state is "not dragging", 
+                    the handle should be in the centre of the joystick. When the handle is being dragged, 
+                    it should follow the mouse but it should not go beyond the joystick base. This is the most 
+                    challenging part of this exercise! Some hints for the maths are provided in the hint below 
+                    the video.
+                </li>
+                <li>The joystick will have two values that could be used to control a character: an x value and a y value. Use 
+                    the position of the handle to determine the values.
+                </li>
+            </ul>
+            <p>Expected output:</p>
+            <p>
+                <video width="600" height="400" controls>
+                    <source src="./assets/3star.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </p>
+        </div>
+        <div>
+            <button class="btn btn-primary hint" type="button" data-bs-toggle="collapse" data-bs-target="#hint" aria-expanded="false" aria-controls="hint">
+                Hint
+            </button>
+            <div class="collapse" id="hint">
+                <div class="card card-body">
+                    <p>You can use the p5.js <a href="https://p5js.org/reference/#/p5/dist" target="_blank"><code>dist()</code></a> function 
+                    to figure out whether the mouse is out of bounds of the joystick base. The handle is in bounds if the distance between the handle 
+                centre and the joystick centre is less than the radius of the base minus the radius of the circle.</p>
+                    <p>There are two ways to respond to the handle being dragged out of bounds:
+                        <ul>
+                            <li>Stop dragging the handle, set the joystick state to "not dragging" and set the handle position to be the centre of the joystick. This 
+                                is the easiest option but the user experience is slighly worse.
+                            </li>
+                            <li>Keep the joystick in "dragging" state but constrain the handle to the edge of the joystick, as shown in the 
+                                video. The maths for this is simpler than you might think! Use the following calculations when the drag is out 
+                                of bounds of the joystick:
+                                <ol>
+                                    <li>Use the <code>dist()</code> function to calculate the distance between the mouse coordinates and the joystick center. This is the current distance.</li>
+                                    <li>Calculate the maximum distance the centre of the handle can be from the centre of the joystick: radius of the joystick - radius of the handle.</li>
+                                    <li>Divide the current distance (step 1) by the maximum distance (step 2). We'll call this the proportional distance.</li>
+                                    <li>Calculate the distance between the mouse x coordinate and the joystick x coordinate. Divide the result by the proportional distance (step 3): (mouse x - joystick centre x) / proportional distance.</li>
+                                    <li>Add the result of step 4 to the joystick x coordinate. This is the adjusted x coordinate.</li>
+                                    <li>Repeat steps 4 and 5 for the y coordinate. This is the adjusted y coordinate.</li>
+                                    <li>Set the handle position using the adjusted coordinates.</li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="sketch.js"></script>
+  </body>
+</html>
